@@ -1,126 +1,159 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
-<head> 
+  <head>
     <!-- Cache Control  -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta
+      http-equiv="Cache-Control"
+      content="no-cache, no-store, must-revalidate"
+    />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
     <!-- end Cache Control  -->
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
     <script>
-       function TahminGir() {
-        var tahminler = new Array();
-        tahminler[0] = document.getElementById('tahmin1').value;
-        tahminler[1] = document.getElementById('tahmin2').value;
-        tahminler[2] = document.getElementById('tahmin3').value;
-        tahminler[3] = document.getElementById('tahmin4').value;
-        tahminler[4] = document.getElementById('tahmin5').value;
-        tahminler[5] = document.getElementById('tahmin6').value;
-        
+      function TahminGir() {
+        let tahminler = new Array();
+        tahminler[0] = document.getElementById("tahmin1").value;
+        tahminler[1] = document.getElementById("tahmin2").value;
+        tahminler[2] = document.getElementById("tahmin3").value;
+        tahminler[3] = document.getElementById("tahmin4").value;
+        tahminler[4] = document.getElementById("tahmin5").value;
+        tahminler[5] = document.getElementById("tahmin6").value;
 
-        
-        if(tahminler[0]>=50||tahminler[1]>=50||tahminler[2]>=50||tahminler[3]>=50||tahminler[4]>=50||tahminler[5]>=50){
-            alert("1-49 sayıları arasında bir sayı girmelisiniz.")}
-        
-        document.getElementById('bilgi').innerText = "Tahminler girildi.";
-        document.getElementById('lotoButon').disabled = false;
-       
-
-       }
-       function Loto() {
-        var loto = new  Array();
-        loto[0] = Math.floor(Math.random()*(parseInt(50)-parseInt(1))) + parseInt(1);
-        loto[1] = Math.floor(Math.random()*(parseInt(50)-parseInt(1))) + parseInt(1);
-        loto[2] = Math.floor(Math.random()*(parseInt(50)-parseInt(1))) + parseInt(1);
-        loto[3] = Math.floor(Math.random()*(parseInt(50)-parseInt(1))) + parseInt(1);
-        loto[4] = Math.floor(Math.random()*(parseInt(50)-parseInt(1))) + parseInt(1);
-        loto[5] = Math.floor(Math.random()*(parseInt(50)-parseInt(1))) + parseInt(1);
-
-        document.getElementById('loto1').value = loto[0];
-        document.getElementById('loto2').value = loto[1];
-        document.getElementById('loto3').value = loto[2];
-        document.getElementById('loto4').value = loto[3];
-        document.getElementById('loto5').value = loto[4];
-        document.getElementById('loto6').value = loto[5];      
-        
-        
-        var tahminler = new Array();
-        tahminler[0] = document.getElementById('tahmin1').value;
-        tahminler[1] = document.getElementById('tahmin2').value;
-        tahminler[2] = document.getElementById('tahmin3').value;
-        tahminler[3] = document.getElementById('tahmin4').value;
-        tahminler[4] = document.getElementById('tahmin5').value;
-        tahminler[5] = document.getElementById('tahmin6').value;
-
-        
-        
-        
-        
-
-        var bilinenler = new Array();
-        var sayac=0;
-
-        for (let i = 0; i< tahminler.length; i++) {
-            for (let t = 0; t < loto.length; t++) {
-                if (tahminler[i] == loto[t]){
-                    sayac++;
-                    bilinenler[i] = loto[t];
-                }
-            }
+        let uniqueTahminler = [...new Set(tahminler)];
+        if (uniqueTahminler.length !== tahminler.length) {
+          alert("Aynı tahmin 1 kez girilebilir.");
         }
 
-        var eslesenler = document.getElementById('eslesenler');
+        const isBelowThreshold = (currentValue) => currentValue < 50;
+
+        const array1 = [1, 30, 39, 29, 10, 13];
+
+        if (!tahminler.every(isBelowThreshold)) {
+          alert("1-49 sayıları arasında bir sayı girmelisiniz.");
+        } else {
+          document.getElementById("bilgi").innerText = "Tahminler girildi.";
+          document.getElementById("lotoButon").disabled = false;
+        }
+        function compareNumbers(a, b) {
+          return a - b;
+        }
+        tahminler.sort(compareNumbers);
+        console.log(tahminler);
+        document.getElementById("tahmin1").value = tahminler[0];
+        document.getElementById("tahmin2").value = tahminler[1];
+        document.getElementById("tahmin3").value = tahminler[2];
+        document.getElementById("tahmin4").value = tahminler[3];
+        document.getElementById("tahmin5").value = tahminler[4];
+        document.getElementById("tahmin6").value = tahminler[5];
+      }
+
+      function Loto() {
+        var loto = new Array();
+        loto[0] =
+          Math.floor(Math.random() * (parseInt(50) - parseInt(1))) +
+          parseInt(1);
+        loto[1] =
+          Math.floor(Math.random() * (parseInt(50) - parseInt(1))) +
+          parseInt(1);
+        loto[2] =
+          Math.floor(Math.random() * (parseInt(50) - parseInt(1))) +
+          parseInt(1);
+        loto[3] =
+          Math.floor(Math.random() * (parseInt(50) - parseInt(1))) +
+          parseInt(1);
+        loto[4] =
+          Math.floor(Math.random() * (parseInt(50) - parseInt(1))) +
+          parseInt(1);
+        loto[5] =
+          Math.floor(Math.random() * (parseInt(50) - parseInt(1))) +
+          parseInt(1);
+
+        document.getElementById("loto1").value = loto[0];
+        document.getElementById("loto2").value = loto[1];
+        document.getElementById("loto3").value = loto[2];
+        document.getElementById("loto4").value = loto[3];
+        document.getElementById("loto5").value = loto[4];
+        document.getElementById("loto6").value = loto[5];
+
+        var tahminler = new Array();
+        tahminler[0] = document.getElementById("tahmin1").value;
+        tahminler[1] = document.getElementById("tahmin2").value;
+        tahminler[2] = document.getElementById("tahmin3").value;
+        tahminler[3] = document.getElementById("tahmin4").value;
+        tahminler[4] = document.getElementById("tahmin5").value;
+        tahminler[5] = document.getElementById("tahmin6").value;
+
+        var bilinenler = new Array();
+        var sayac = 0;
+
+        for (let i = 0; i < tahminler.length; i++) {
+          for (let t = 0; t < loto.length; t++) {
+            if (tahminler[i] == loto[t]) {
+              sayac++;
+              bilinenler[i] = loto[t];
+            }
+          }
+        }
+
+        var eslesenler = document.getElementById("eslesenler");
         eslesenler.innerText = "Bilinen sayılar: ";
 
         for (let i = 0; i < bilinenler.length; i++) {
-            if (bilinenler[i] != null){
-                    if (i != bilinenler.length-1){
-                    eslesenler.innerText = eslesenler.innerText + bilinenler[i] + ","  ;
-                }
-                else{
-                    eslesenler.innerText = eslesenler.innerText + bilinenler[i] ;
-                }         
-            }       
+          if (bilinenler[i] != null) {
+            if (i != bilinenler.length - 1) {
+              eslesenler.innerText = eslesenler.innerText + bilinenler[i] + ",";
+            } else {
+              eslesenler.innerText = eslesenler.innerText + bilinenler[i];
+            }
+          }
         }
 
-
-        document.getElementById('adet').innerText = sayac + " adet sayı bildiniz.";
-       }
+        document.getElementById("adet").innerText =
+          sayac + " adet sayı bildiniz.";
+      }
     </script>
+  </head>
 
-</head>
-
-<body>
+  <body>
     <h2>Sayısal Loto Oyunu</h2>
     <p>Aşağıdaki inputlara tahminlerini giriniz;</p>
-    <input type="number" id="tahmin1" style="width: 50px; ;">
-    <input type="number" id="tahmin2" style="width: 50px; ;" >
-    <input type="number" id="tahmin3" style="width: 50px; ;">
-    <input type="number" id="tahmin4" style="width: 50px; ;">
-    <input type="number" id="tahmin5" style="width: 50px; ;">
-    <input type="number" id="tahmin6" style="width: 50px; ;">
-    <input type="submit" value="Tahmin gir" onclick="TahminGir()"> <br><br>
+    <input type="number" id="tahmin1" style="width: 50px" />
+    <input type="number" id="tahmin2" style="width: 50px" />
+    <input type="number" id="tahmin3" style="width: 50px" />
+    <input type="number" id="tahmin4" style="width: 50px" />
+    <input type="number" id="tahmin5" style="width: 50px" />
+    <input type="number" id="tahmin6" style="width: 50px" />
+    <input type="submit" value="Tahmin gir" onclick="TahminGir()" />
+    <br /><br />
     <label id="bilgi"></label>
-    <hr>
+    <hr />
 
-    <input type="button" value="Kurayı Çek" id="lotoButon" onclick="Loto()" disabled>
+    <input
+      type="button"
+      value="Kurayı Çek"
+      id="lotoButon"
+      onclick="Loto()"
+      disabled
+    />
     <p>Loto Sayıları</p>
-    <input type="number" id="loto1" style="width: 50px; ;" readonly disabled>
-    <input type="number" id="loto2" style="width: 50px; ;" readonly disabled>
-    <input type="number" id="loto3" style="width: 50px; ;" readonly disabled>
-    <input type="number" id="loto4" style="width: 50px; ;" readonly disabled>
-    <input type="number" id="loto5" style="width: 50px; ;" readonly disabled>
-    <input type="number" id="loto6" style="width: 50px; ;" readonly disabled><br><br>
+    <input type="number" id="loto1" style="width: 50px" readonly disabled />
+    <input type="number" id="loto2" style="width: 50px" readonly disabled />
+    <input type="number" id="loto3" style="width: 50px" readonly disabled />
+    <input type="number" id="loto4" style="width: 50px" readonly disabled />
+    <input type="number" id="loto5" style="width: 50px" readonly disabled />
+    <input
+      type="number"
+      id="loto6"
+      style="width: 50px"
+      readonly
+      disabled
+    /><br /><br />
 
-    <label id="eslesenler"></label><br>
+    <label id="eslesenler"></label><br />
     <label id="adet"></label>
-
-    
-</body>
-
+  </body>
 </html>
